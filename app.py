@@ -16,7 +16,7 @@ debug = False
 
 
 
-# Check for file path
+# Check for file path to data base
 if (url==""):
     os.system('cls')
     print("! Plese put the file path for the '.db' file in the 'url' varible !")
@@ -31,7 +31,7 @@ c = conn.cursor()
 
 # Main Menue Loop
 def mainMenue():
-
+    global isTableThere
     while True:
         os.system('cls')
         #Check for table in DB
