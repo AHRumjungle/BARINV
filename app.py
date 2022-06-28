@@ -352,10 +352,13 @@ def sqlLookup():
     while True:
         os.system('cls')
         print("#-SQL Lookup-#")
+        print("Enter 'q' to quit")
         print("Enter SQL commands too querry")
         print("##############")
 
         result = input()
+
+        if (result == 'q'): break
 
         try:
             c.execute(result)
