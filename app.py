@@ -62,9 +62,10 @@ def mainMenue():
         
         print("#-BARINV-#")
         print("q - quit")
-        print("1 - Add items to database")
+        print("1 - Add product to database")
         print("2 - Lookup")
         print("3 - Change Status")
+        print("4 - Remove Product from database")
         print("9 - Options")
         print("0 - About")
 
@@ -104,6 +105,9 @@ def mainMenue():
 
         if (inputR == '3'):
             changeStatus()
+
+        if (inputR == '4'):
+            removeItem()
 
         if (inputR == '9'):
             DBSetup()
@@ -453,6 +457,30 @@ def changeStatus():
                 except:
                     print("Somthing Whent Wrong")
                     time.sleep(1)
+
+def removeItem():
+    while True:
+        os.system('cls')
+        print("#-Remove Product-#")
+        print("Enter 'q' to quit")
+        print("Scan the prodcut that you would like to remove")
+        print("##################")
+
+        scan = input()
+
+        if (scan == 'q'): break
+
+        querry = "DELETE FROM item WHERE serial = '"+str(scan)+"'"
+
+        try:
+            c.execute(querry)
+            conn.commit()
+            print("removed")
+        except:
+            print("Somthing Whent Wrong!")
+            time.sleep(1)
+
+
 
 
 
