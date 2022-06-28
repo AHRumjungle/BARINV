@@ -3,7 +3,7 @@ An opensource inventory manegment python script using SQLite
 
 ## Requierments
 
-Makesure Python 3.8 or higher is installed
+Python 3.8 or higher is installed
 
 
 
