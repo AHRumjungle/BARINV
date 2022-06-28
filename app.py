@@ -1,4 +1,3 @@
-from distutils.log import debug
 from logging import error
 import sqlite3 as sq
 import os
@@ -260,7 +259,7 @@ def changeStatus():
                 print("##########")
                 result = input()
                 
-                if (status == 'q'): break
+                if (result == 'q'): break
 
                 querry = "UPDATE "+str(table)+" SET status = '"+str(status)+"' WHERE serial = "+str(result)
 
