@@ -161,43 +161,99 @@ def DBSetup():
 
 def add():
     while True:
-        #main loop
         os.system('cls')
         print("#-Add a Product-#")
-        print("Enter 'q' to quit")
-        print("Scan product")
+        print("q - quit")
+        print("1 - Single Add")
+        print("2 - Bulk Add")
         print("#################")
-        scan = input()
-        if (scan == 'q'):
-            break
-        print("##########")
-        print("Name of Product:")
-        name = input()
-        print("##########")
-        print("Current Status:")
-        status = input()
-        print("##########")
+        result = input()
+
+        if (result == 'q'): break
+
+        #Add one
+        if(result == '1'):
+            while True:
+                os.system('cls')
+                print("#-Add a single Product-#")
+                print("Enter 'q' to quit")
+                print("Scan product")
+                print("########################")
+                scan = input()
+                if (scan == 'q'): break
+                print("########################")
+                print("Name of Product:")
+                name = input()
+                print("########################")
+                print("Current Status:")
+                status = input()
+                print("########################")
 
 
 
-        if(name == 'q'):
-            break
-        else:
-            querry = "INSERT INTO "+str(table)+" VALUES ("+str(scan)+", '"+str(name)+"', '"+str(status)+"')"
-            if (debug==True): print(querry)
+                if(name == 'q'):
+                    break
+                else:
+                    querry = "INSERT INTO "+str(table)+" VALUES ("+str(scan)+", '"+str(name)+"', '"+str(status)+"')"
+                    if (debug==True): print(querry)
 
 
-            try:
-                c.execute(querry)
-                pass
-            except:
-                print("Somthing Went Wrong!")
-                print(error)
-                time.sleep(1)
+                    try:
+                        c.execute(querry)
+                        pass
+                    except:
+                        print("Somthing Went Wrong!")
+                        print(error)
+                        time.sleep(1)
+
+                    conn.commit()
+                    time.sleep(1)
+
+        #Bulk add
+        if (result == '2'):
+            os.system('cls')
+            print("#-Bulk Add-#")
+            print("Enter 'q' to quit")
+            print("Name of Product:")
+            print("##########")
+
+            name = input()
+            if (name == 'q'): break
+
+            print("##########")
+            print("Current Status:")
+            print("##########")
+
+            status = input()
+            if (status == 'q'): break
             
-            conn.commit()
+            print("##########")
+            print("Scan product")
+            print("#################")
+            
+            
+            while True:
 
-            time.sleep(1)
+                scan = input()
+
+                if (scan == 'q'): break
+
+                querry = "INSERT INTO "+str(table)+" VALUES ("+str(scan)+", '"+str(name)+"', '"+str(status)+"')"
+                if (debug==True): print(querry)
+
+
+                try:
+                    c.execute(querry)
+                    print("Added!")
+                    pass
+                except:
+                    print("Somthing Went Wrong!")
+                    print(error)
+                    time.sleep(1)
+
+                conn.commit()
+
+
 
 def serLookup():
     while True:
