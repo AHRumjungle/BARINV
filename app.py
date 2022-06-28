@@ -6,8 +6,6 @@ import time
 ############
 ##-BARINV-##
 ############
-# Made by:
-# Andrius Varikojis
 # 6/27/2022
 ############
 ## Put a SQLite database file path here:
