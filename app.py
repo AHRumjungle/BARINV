@@ -141,7 +141,7 @@ def DBSetup():
                     break
 
 
-            querry = "CREATE TABLE "+str(table)+" (serial INTEGER, name TEXT, status TEXT)"
+            querry = "CREATE TABLE "+str(table)+" (serial INTEGER UNIQUE, name TEXT, status TEXT)"
             if (debug==True): print(querry)
 
 
