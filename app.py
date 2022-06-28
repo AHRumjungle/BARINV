@@ -36,46 +36,59 @@ def mainMenue():
         os.system('cls')
         #Check for table in DB
         c.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='item'")
-    
+
         if (debug==True): print(c.fetchall())
-    
+
         if(c.fetchall()=='[]'):
             isTableThere = False
         else:
             isTableThere = True
-    
-    
-        
-        print("##########")
-        print("'q' to quit")
+
+
+        print("#-BARINV-#")
+        print("q - quit")
         print("1 - Add items to database")
         print("2 - Serial Lookup")
         print("3 - Name Lookup")
         print("4 - Change Status")
         print("9 - Options")
-    
-    
+        print("0 - About")
+
+
         if(isTableThere == False):
             print("! No sutible table in database. Set up a table in 'options' !")
-    
-    
+
+
         print("##########")
         inputR = input()
-    
+
         if (inputR == '1'):
             add()
-            
+
         if (inputR == '2'):
             serLookup()
-    
+
         if (inputR == '3'):
             nameLookup()
-    
+
         if (inputR == '4'):
             changeStatus()
-    
+
         if (inputR == '9'):
             DBSetup()
+        
+        if (inputR == '0'):
+            #About
+            os.system('cls')
+            print("--BARINV--")
+            print("##########")
+            print("Made By:")
+            print("Andrius Variakojis")
+            print("6/27/2022")
+            print("TIP: Set the barcode scanner to have the suffix to be the 'ENTER' for faster scanning")
+            print("##########")
+            input()
+
         if (inputR == 'q'):
             break
 
@@ -91,11 +104,11 @@ def DBSetup():
     global debug
     while True:
         os.system('cls')
-        print("##########")
-        print("'q' to quit")
+        print("#-Setup-#")
+        print("q - quit")
         print("1 - Setup database table")
         print("9 - Turn on/off debug")
-        print("##########")
+        print("#########")
         result = input()
 
         if (result == 'q'):
@@ -150,11 +163,10 @@ def add():
     while True:
         #main loop
         os.system('cls')
-        print("##########")
+        print("#-Add a Product-#")
         print("Enter 'q' to quit")
-        print("Adding product to database")
         print("Scan product")
-        print("##########")
+        print("#################")
         scan = input()
         if (scan == 'q'):
             break
@@ -190,11 +202,11 @@ def add():
 def serLookup():
     while True:
         os.system('cls')
-        print("##########")
+        print("#-Serial Number Lookup-#")
         print("Enter 'q' to quit")
         print("Looking up product from database")
         print("Scan product:")
-        print("#########")
+        print("########################")
         scan = input()
         
 
@@ -224,11 +236,11 @@ def serLookup():
 def nameLookup():
     while True:
         os.system('cls')
-        print("##########")
+        print("#-Name Lookup-#")
         print("Enter 'q' to quit")
         print("Looking up product from database")
         print("Type name of product:")
-        print("#########")
+        print("###############")
         scan = input()
         
 
@@ -254,11 +266,11 @@ def nameLookup():
 def changeStatus():
     while True:
         os.system('cls')
-        print("##########")
-        print("Enter 'q' to quit")
+        print("#-Change Status-#")
+        print("q - quit")
         print("1 - Single Change")
         print("2 - Bulk Change")
-        print("##########")
+        print("#################")
         result = input()
 
         if (result == 'q'): break
@@ -269,16 +281,17 @@ def changeStatus():
         if (result == '1'):
             while True:
                 os.system('cls')
-                print("##########")
+                print("#-Single Change-#")
                 print("Enter 'q' to quit")
                 print('Scan Product Serial')
+                print("#################")
 
                 result = input()
                 if (result == 'q'): break
 
-                print("##########")
+                print("#################")
                 print('Enter new status')
-                print("##########")
+                print("#################")
                 status = input()
                 if (status == 'q'): break
 
@@ -300,21 +313,21 @@ def changeStatus():
         #Bulk change
         if (result == '2'):
             os.system('cls')
-            print("##########")
+            print("#-Bulk Change-#")
             print("Enter 'q' to quit")
             print('Enter new status')
-            print("##########")
+            print("###############")
 
             status = input()
             if (status == 'q'): break
 
             while True:
                 os.system('cls')
-                print("##########")
+                print("#-Bulk Change-#")
                 print("Enter 'q' to quit")
                 print("New status: "+str(status))
                 print('Scan Product Serial')
-                print("##########")
+                print("###############")
                 result = input()
                 
                 if (result == 'q'): break
