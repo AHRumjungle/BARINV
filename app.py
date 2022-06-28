@@ -4,6 +4,12 @@ import os
 import time
 
 ############
+##-BARINV-##
+############
+# Made by:
+# Andrius Varikojis
+# 6/27/2022
+############
 ## Put a SQLite database file path here:
 url = 'data.db'
 ## Put the target table here:
