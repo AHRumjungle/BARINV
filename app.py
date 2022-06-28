@@ -29,22 +29,35 @@ conn = sq.connect(url)
 c = conn.cursor()
 
 
+
+
+
+
 # Main Menue Loop
 def mainMenue():
-    global isTableThere
+    
     while True:
-        os.system('cls')
+        
+        global isTableThere
+
         #Check for table in DB
         c.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='item'")
 
-        if (debug==True): print(c.fetchall())
-
-        if(c.fetchall()=='[]'):
+        if(c.fetchall()==[]):
             isTableThere = False
         else:
             isTableThere = True
 
+        if (debug==True): 
+            print("Table: "+str(isTableThere))
 
+            time.sleep(1)
+
+
+
+
+        os.system('cls')
+        
         print("#-BARINV-#")
         print("q - quit")
         print("1 - Add items to database")
