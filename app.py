@@ -29,6 +29,64 @@ conn = sq.connect(url)
 c = conn.cursor()
 
 
+# Main Menue Loop
+def mainMenue():
+
+    while True:
+        os.system('cls')
+        #Check for table in DB
+        c.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='item'")
+    
+        if (debug==True): print(c.fetchall())
+    
+        if(c.fetchall()=='[]'):
+            isTableThere = False
+        else:
+            isTableThere = True
+    
+    
+        
+        print("##########")
+        print("'q' to quit")
+        print("1 - Add items to database")
+        print("2 - Serial Lookup")
+        print("3 - Name Lookup")
+        print("4 - Change Status")
+        print("9 - Options")
+    
+    
+        if(isTableThere == False):
+            print("! No sutible table in database. Set up a table in 'options' !")
+    
+    
+        print("##########")
+        inputR = input()
+    
+        if (inputR == '1'):
+            add()
+            
+        if (inputR == '2'):
+            serLookup()
+    
+        if (inputR == '3'):
+            nameLookup()
+    
+        if (inputR == '4'):
+            changeStatus()
+    
+        if (inputR == '9'):
+            DBSetup()
+        if (inputR == 'q'):
+            break
+
+
+
+
+
+
+
+
+
 def DBSetup():
     global debug
     while True:
@@ -274,54 +332,7 @@ def changeStatus():
 
 
 
-# Main Menue Loop
-
-while True:
-    os.system('cls')
-    #Check for table in DB
-    c.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='item'")
-
-    if (debug==True): print(c.fetchall())
-
-    if(c.fetchall()=='[]'):
-        isTableThere = False
-    else:
-        isTableThere = True
-
-
-    
-    print("##########")
-    print("'q' to quit")
-    print("1 - Add items to database")
-    print("2 - Serial Lookup")
-    print("3 - Name Lookup")
-    print("4 - Change Status")
-    print("9 - Options")
-
-
-    if(isTableThere == False):
-        print("! No sutible table in database. Set up a table in 'options' !")
-
-
-    print("##########")
-    inputR = input()
-
-    if (inputR == '1'):
-        add()
-        
-    if (inputR == '2'):
-        serLookup()
-
-    if (inputR == '3'):
-        nameLookup()
-
-    if (inputR == '4'):
-        changeStatus()
-
-    if (inputR == '9'):
-        DBSetup()
-    if (inputR == 'q'):
-        break
+mainMenue()
 
 conn.commit()
 conn.close()
