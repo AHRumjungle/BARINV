@@ -121,8 +121,6 @@ def mainMenue():
             os.system('cls')
             print("--BARINV--")
             print("##########")
-            print("Made By:")
-            print("Andrius Variakojis")
             print("6/27/2022")
             print("TIP: Set the barcode scanner to have the suffix to be the 'ENTER' key for faster scanning")
             print("##########")
