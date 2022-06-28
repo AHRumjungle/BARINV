@@ -3,16 +3,18 @@ import sqlite3 as sq
 import os
 import time
 
-###########
+############
 ## Put a SQLite database file path here:
 url = 'data.db'
 ## Put the target table here:
 table = 'item'
-###########
+############
 debug = False
 # Default: False
-###########
-
+############
+## TO DO: ##
+## Format output for SQL lookup ##
+############
 
 
 
@@ -37,7 +39,7 @@ c = conn.cursor()
 def mainMenue():
     
     while True:
-        
+
         global isTableThere
 
         #Check for table in DB
@@ -61,9 +63,8 @@ def mainMenue():
         print("#-BARINV-#")
         print("q - quit")
         print("1 - Add items to database")
-        print("2 - Serial Lookup")
-        print("3 - Name Lookup")
-        print("4 - Change Status")
+        print("2 - Lookup")
+        print("3 - Change Status")
         print("9 - Options")
         print("0 - About")
 
@@ -79,12 +80,29 @@ def mainMenue():
             add()
 
         if (inputR == '2'):
-            serLookup()
+           
+           while True:
+            os.system('cls')
+            print("#-Look Up-#")
+            print("q - quit")
+            print("1 - Serial Lookup")
+            print("2 - Name Lookup")
+            print("3 - Custom SQL Lookup")
+            print("###########")
+
+            result = input()
+
+            if (result == 'q'): break
+
+            if (result == '1'):
+                serLookup()
+            if(result == '2'):
+                nameLookup()
+            if(result == '3'):
+                sqlLookup()
+
 
         if (inputR == '3'):
-            nameLookup()
-
-        if (inputR == '4'):
             changeStatus()
 
         if (inputR == '9'):
@@ -327,6 +345,30 @@ def nameLookup():
         print('---------------------')
         for item in result:
             print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
+        input()
+
+
+def sqlLookup():
+    while True:
+        os.system('cls')
+        print("#-SQL Lookup-#")
+        print("Enter SQL commands too querry")
+        print("##############")
+
+        result = input()
+
+        try:
+            c.execute(result)
+            pass
+        except:
+            print("Somthing Whent Wrong!")
+            time.sleep(1)
+        
+        querry = c.fetchall()
+
+        for items in querry:
+            for parts in items:
+                print(parts)
         input()
 
 
