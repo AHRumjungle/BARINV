@@ -47,7 +47,7 @@ def mainMenue():
         global isTableThere
 
         #Check for table in DB
-        c.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='item'")
+        c.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='"+str(table)+"'")
 
         if(c.fetchall()==[]):
             isTableThere = False
@@ -73,38 +73,20 @@ def mainMenue():
         print("9 - Options")
         print("0 - About")
 
-
         if(isTableThere == False):
             print("! No sutible table in database. Set up a table in 'options' !")
 
-
         print("##########")
+
         inputR = input()
+
 
         if (inputR == '1'):
             add()
 
         if (inputR == '2'):
            
-           while True:
-            os.system('cls')
-            print("#-Look Up-#")
-            print("q - quit")
-            print("1 - Serial Lookup")
-            print("2 - Name Lookup")
-            print("3 - Custom SQL Lookup")
-            print("###########")
-
-            result = input()
-
-            if (result == 'q'): break
-
-            if (result == '1'):
-                serLookup()
-            if(result == '2'):
-                nameLookup()
-            if(result == '3'):
-                sqlLookup()
+           lookup()
 
 
         if (inputR == '3'):
@@ -128,13 +110,6 @@ def mainMenue():
 
         if (inputR == 'q'):
             break
-
-
-
-
-
-
-
 
 
 def DBSetup():
@@ -190,10 +165,6 @@ def DBSetup():
             except:
                 print("Somthing Whent Wrong!")
                 time.sleep(1)
-
-
-
-
 
 
 def add():
@@ -291,94 +262,112 @@ def add():
                 conn.commit()
 
 
+def lookup():
 
-def serLookup():
     while True:
-        os.system('cls')
-        print("#-Serial Number Lookup-#")
-        print("Enter 'q' to quit")
-        print("Scan product:")
-        print("########################")
-        scan = input()
-        
+            os.system('cls')
+            print("#-Look Up-#")
+            print("q - quit")
+            print("1 - Serial Lookup")
+            print("2 - Name Lookup")
+            print("3 - Custom SQL Lookup")
+            print("###########")
 
-        if (scan=='q'):
-            break
+            result = input()
 
-        querry = "SELECT * FROM "+str(table)+" WHERE serial = "+str(scan)
-        if (debug==True): print(querry)
-
-        try:
-            c.execute(querry)
-        except:
-            print("Somthing Went Wrong!")
-            time.sleep(1)
-            break
-
-        result = c.fetchall()
-
-        print('')
-        print('Serial | Name | Status')
-        print('---------------------')
-        for item in result:
-            print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
-        input()
+            if (result == 'q'): break
 
 
-def nameLookup():
-    while True:
-        os.system('cls')
-        print("#-Name Lookup-#")
-        print("Enter 'q' to quit")
-        print("Type name of product:")
-        print("###############")
-        scan = input()
-        
 
-        if (scan=='q'):
-            break
-
-        querry = "SELECT * FROM "+str(table)+" WHERE name LIKE '%"+str(scan)+"%'"
-        if (debug==True): print(querry)
+            #Serial Look Up
+            if (result == '1'):
+                    while True:
+                        os.system('cls')
+                        print("#-Serial Number Lookup-#")
+                        print("Enter 'q' to quit")
+                        print("Scan product:")
+                        print("########################")
+                        scan = input()
 
 
-        c.execute(querry)
+                        if (scan=='q'):
+                            break
+                        
+                        querry = "SELECT * FROM "+str(table)+" WHERE serial = "+str(scan)
+                        if (debug==True): print(querry)
 
-        result = c.fetchall()
+                        try:
+                            c.execute(querry)
+                        except:
+                            print("Somthing Went Wrong!")
+                            time.sleep(1)
+                            break
+                        
+                        result = c.fetchall()
 
-        print('')
-        print('Serial | Name | Status')
-        print('---------------------')
-        for item in result:
-            print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
-        input()
+                        print('')
+                        print('Serial | Name | Status')
+                        print('---------------------')
+                        for item in result:
+                            print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
+                        input()
+
+            #Name Look Up
+            if(result == '2'):
+                    while True:
+                        os.system('cls')
+                        print("#-Name Lookup-#")
+                        print("Enter 'q' to quit")
+                        print("Type name of product:")
+                        print("###############")
+                        scan = input()
 
 
-def sqlLookup():
-    while True:
-        os.system('cls')
-        print("#-SQL Lookup-#")
-        print("Enter 'q' to quit")
-        print("Enter SQL commands too querry")
-        print("##############")
+                        if (scan=='q'):
+                            break
+                        
+                        querry = "SELECT * FROM "+str(table)+" WHERE name LIKE '%"+str(scan)+"%'"
+                        if (debug==True): print(querry)
 
-        result = input()
 
-        if (result == 'q'): break
+                        c.execute(querry)
 
-        try:
-            c.execute(result)
-            pass
-        except:
-            print("Somthing Whent Wrong!")
-            time.sleep(1)
-        
-        querry = c.fetchall()
+                        result = c.fetchall()
 
-        for items in querry:
-            for parts in items:
-                print(parts)
-        input()
+                        print('')
+                        print('Serial | Name | Status')
+                        print('---------------------')
+                        for item in result:
+                            print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
+                        input()
+
+            #SQL querry
+            if(result == '3'):
+                while True:
+                    os.system('cls')
+                    print("#-SQL Lookup-#")
+                    print("Enter 'q' to quit")
+                    print("Enter SQL commands too querry")
+                    print("##############")
+
+                    result = input()
+
+                    if (result == 'q'): break
+
+                    try:
+                        c.execute(result)
+                        pass
+                    except:
+                        print("Somthing Whent Wrong!")
+                        time.sleep(1)
+
+                    querry = c.fetchall()
+
+                    for items in querry:
+                        for parts in items:
+                            print(parts)
+                    input()
+
 
 
 def changeStatus():
@@ -414,7 +403,6 @@ def changeStatus():
                 if (status == 'q'): break
 
                 
-
                 querry = "UPDATE "+str(table)+" SET status = '"+str(status)+"' WHERE serial = "+str(result)
                 if (debug == True): print(querry)
 
@@ -425,7 +413,6 @@ def changeStatus():
                 except:
                     print("Somthing Whent Wrong")
                     time.sleep(1)
-
 
 
         #Bulk change
@@ -460,6 +447,7 @@ def changeStatus():
                     print("Somthing Whent Wrong")
                     time.sleep(1)
 
+
 def removeItem():
     while True:
         os.system('cls')
@@ -481,9 +469,6 @@ def removeItem():
         except:
             print("Somthing Whent Wrong!")
             time.sleep(1)
-
-
-
 
 
 
