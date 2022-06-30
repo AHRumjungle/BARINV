@@ -18,7 +18,7 @@ debug = False
 # Default: False
 ############
 ## TO DO: ##
-##
+## 
 ############
 
 
@@ -307,11 +307,26 @@ def lookup():
                         result = c.fetchall()
 
                         print('')
-                        print('Serial | Name | Status')
+                        print('# | Serial | Name | Status')
                         print('---------------------')
-                        for item in result:
-                            print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
+                        
+                        #Lookup
+                        rowCount = 0
+                        for items in result:
+                            length = np.size(items)
+                            count = 0
+                            row = ""
+                            rowCount += 1
+                            row += str(rowCount)+" | "
+                            for parts in items:
+                                count += 1
+                                row += str(parts)
+                                if(count != length):
+                                    row += " | "
+                            print(row)
                         input()
+
+
 
             #Name Look Up
             if(result == '2'):
@@ -336,11 +351,28 @@ def lookup():
                         result = c.fetchall()
 
                         print('')
-                        print('Serial | Name | Status')
+                        print('# | Serial | Name | Status')
                         print('---------------------')
-                        for item in result:
-                            print(str(item[0])+" | "+str(item[1])+" | "+str(item[2]))
+                        
+
+                        #Lookup
+                        rowCount = 0
+                        for items in result:
+                            length = np.size(items)
+                            count = 0
+                            row = ""
+                            rowCount += 1
+                            row += str(rowCount)+" | "
+                            for parts in items:
+                                count += 1
+                                row += str(parts)
+                                if(count != length):
+                                    row += " | "
+                            print(row)
                         input()
+
+
+
 
             #SQL querry
             if(result == '3'):
@@ -369,6 +401,8 @@ def lookup():
                     print("")
                     #print('Serial | Name | Status')
                     print('---------------------')
+
+
 
                     for items in querry:
                         length = np.size(items)
