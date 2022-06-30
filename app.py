@@ -209,6 +209,7 @@ def add():
 
                     try:
                         c.execute(querry)
+                        print("Added!")
                         pass
                     except:
                         print("Somthing Went Wrong!")
@@ -217,6 +218,7 @@ def add():
 
                     conn.commit()
                     time.sleep(1)
+
 
         #Bulk add
         if (result == '2'):
@@ -238,7 +240,7 @@ def add():
             
             print("##########")
             print("Scan product")
-            print("#################")
+            print("##########")
             
             
             while True:
