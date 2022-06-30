@@ -2,6 +2,7 @@ from logging import error
 import sqlite3 as sq
 import os
 import time
+import numpy as np
 
 ############
 ##-BARINV-##
@@ -17,12 +18,12 @@ debug = False
 # Default: False
 ############
 ## TO DO: ##
-## Format output for SQL lookup ##
+## Custom index for SQL Lookup
 ############
 
 
 
-# Check for file path to data base
+# Check for file path to database
 if (url==""):
     os.system('cls')
     print("! Plese put the file path for the '.db' file in the 'url' varible !")
@@ -363,9 +364,25 @@ def lookup():
 
                     querry = c.fetchall()
 
+                    
+
+                    print("")
+                    #print('Serial | Name | Status')
+                    print('---------------------')
+
                     for items in querry:
+                        length = np.size(items)
+                        count = 0
+                        row = ""
                         for parts in items:
-                            print(parts)
+                            count += 1
+                            row += str(parts)
+                            if(count != length):
+                                row += " | "
+
+                        
+                        print(row)
+                    
                     input()
 
 
