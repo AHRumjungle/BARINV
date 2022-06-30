@@ -18,7 +18,7 @@ debug = False
 # Default: False
 ############
 ## TO DO: ##
-## Custom index for SQL Lookup
+##
 ############
 
 
@@ -364,7 +364,7 @@ def lookup():
 
                     querry = c.fetchall()
 
-                    
+                    if (debug==True): print(querry)
 
                     print("")
                     #print('Serial | Name | Status')
