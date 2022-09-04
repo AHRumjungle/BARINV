@@ -1,9 +1,14 @@
 # BARINV
-An opensource inventory manegment python script using SQLite
+An opensource inventory management python script using SQLite
 
-## Requierments
+## Building
 
-Python 3.8 or higher is installed
+This script was built using PyInstaller
+
+1. Install PyInstaller
+2. Download 'app.py'
+3. In the directory run: `pyinstaller --onefile app.py`
+4. Run the executable is bult in the 'dist' folder
 
 
 
